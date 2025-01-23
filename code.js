@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Dropdown Menu
-    const dropdowns = document.querySelectorAll(".dropdown");
-    dropdowns.forEach((dropdown) => {
+    document.querySelectorAll(".dropdown").forEach(dropdown => {
         dropdown.addEventListener("mouseenter", () => {
             dropdown.querySelector(".dropdown-menu").classList.add("show");
         });
@@ -18,12 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", e => {
             e.preventDefault();
-            document.querySelector(this.getAttribute("href")).scrollIntoView({
-                behavior: "smooth"
-            });
+            document.querySelector(link.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
         });
     });
 
@@ -33,23 +30,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Contact Form Validation
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
-        contactForm.addEventListener("submit", (e) => {
+        contactForm.addEventListener("submit", e => {
             e.preventDefault();
             const name = document.getElementById("name").value.trim();
             const email = document.getElementById("email").value.trim();
 
             if (!name || !email) {
-                alert("Please fill in all fields.");
+                alert("Please complete all fields.");
                 return;
             }
 
-            if (!/\S+@\S+\.\S+/.test(email)) {
-                alert("Please enter a valid email address.");
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                alert("Enter a valid email address.");
                 return;
             }
 
-            alert("Form submitted successfully!");
+            alert("Thank you! Your message has been sent.");
             contactForm.reset();
         });
     }
 });
+
